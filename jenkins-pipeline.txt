@@ -1,0 +1,223 @@
+17.PIPELINE AS A CODE:
+
+YOU CAN RUN COMMANDS HERE 
+
+pipeline {
+    agent any
+
+    stages {
+        stage('CMD') {
+            steps {
+                sh 'touch file1'
+                sh 'pwd'	
+            }
+        }
+    }
+}
+
+==================================================================================
+18.IF YOU WANT TO ADD MULTIPLE COMMANDS OVER SINGLE LINE 
+
+pipeline {
+    agent any
+
+    stages {
+        stage('CMD') {
+            steps {
+                sh '''
+                touch file2
+                pwd
+                date 
+                whoami
+                '''
+            }
+        }
+    }
+}
+==================================================================================
+19.PIPELINE AS A CODE ENVIRONMET VARIABLES:
+
+pipeline {
+    agent any
+
+    stages {
+        stage('ENV') {
+            steps {
+                sh 'echo "${BUILD_ID}"'
+            }
+        }
+    }
+}
+==================================================================================
+20.
+pipeline {
+    agent any
+    environment {
+        name = 'raham'
+    }
+    stages {
+        stage('ENV') {
+            steps {
+                sh 'echo “${BUILD_ID}”'
+		sh 'echo "${name}"'
+            }
+        }
+    }
+}
+==================================================================================
+21.
+    pipeline {
+        agent any
+        environment {
+            name = 'raham'
+        }
+        stages {
+            stage('ENV1') {
+                steps {
+                    sh 'echo "${BUILD_ID}"'
+                    sh 'echo "${name}"'
+                }
+            }
+            stage('ENV2') {
+                environment {
+                    name = 'shaik'
+                }
+                steps {
+                    sh 'echo "${BUILD_ID}"'
+                    sh 'echo "${name}"'
+                }
+            }
+    }
+}
+==================================================================================
+
+22.PIPELINE AS A CODE PARAMETERS : (STRING, BOOLEAN, CHOICE)
+
+pipeline {
+    agent any
+     environment {
+            name = 'raham'
+        }
+        parameters {
+            string(name: 'person', defaultValue: 'raham shaik', description: "how are you")
+        }
+    stages {
+        stage('parameters') {
+            steps {
+                sh 'echo "${name}"'
+                sh 'echo "${person}"'
+            }
+        }
+    }
+}
+BUILD WITH PARAMETERS — > CHANGE DEFAULT VALUE — >  BUILD
+==================================================================================
+23.
+booleanParam(name: 'male', defaultValue: true, description: “”)
+YOU CAN SEE THIS ONCE FIRST BUILD IS DONE
+==================================================================================
+24.
+choice(name: 'server', choices: ['a','b','c'], description: “")
+YOU CAN SEE THIS ONCE FIRST BUILD IS DONE
+==================================================================================
+25.
+PIPELINE AS A CODE INPUT PARAMETER:
+
+stage('Continue ?') {
+            input {
+                message "Can We Continue ?"
+                ok "Yes We Can Continue"
+            }
+            steps {
+                echo 'HAI ALL'
+            }
+        }
+CLICK ON CONTINUE STAGE YOU CAN SEE A CONFIRMATION MESSAGE 
+==================================================================================
+26.
+PIPELINE AS A CODE POST-BUILD:
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+    post{
+        always {
+                echo 'THIS WILL BE PRINTED ANYWAY'
+            }
+        }
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage ('Deploy') {
+            steps {
+                echo12 'This is deployed'
+            }
+        }
+    }
+    post{
+        always {
+                echo 'THIS WILL BE PRINTED ANYWAY'
+            }
+        }
+}
+THIS WILL BE PRINTED EVEN IF THE BUILD WILL FAIL
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage ('Deploy') {
+            steps {
+                echo 'This is deployed'
+            }
+        }
+    }
+    post{
+        always {
+                echo 'THIS WILL BE PRINTED ANYWAY'
+            }
+        failure {
+            echo "THIS IS FAILED"
+        }
+        success {
+            echo "THIS IS SUCCESS"
+        }
+    }
+}
+
+ALWAYS : WILL PRINT EVEN IF IT FAILS OR SUCCESS
+FAILURE : WILL PRINT WHEN BUILD GOT FAILED
+SUCCESS: WILL PRINT WHEN BUILD GOT SUCCESS
+
+DO WITH THIS BY REMOVING 12 IN ECHO12
+==================================================================================
+
+
+
+
+
+
+
+
+
+ 
