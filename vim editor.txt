@@ -1,0 +1,100 @@
+VIM EDIOTR:
+
+ MODES:  
+1. COMMAND MODE
+2. INSERT MODE
+3. SAVE & QUIT MODE 
+
+1. command mode:
+
+gg 		:	top of the file
+shift+g	:	end of the file
+yy		:	copies the whole line
+p		:	prints the copied content
+3p 		:	3 lines print
+dd		:	deletes the line
+5dd		:	5 lines delete
+u		:	undo
+/word		:	finds the word
+
+
+2. Insert mode
+
+a		:	one character ahead
+A		:	end of the line
+o		:	creates new line (down)
+O		:	creates a new line (Up)
+i		:	enters into insert mode 
+I		:	starting of the line
+
+
+3. SAVE & QUIT MODE 
+
+:w = save
+:q = quit
+:wq = save and quit 
+:w!= save forcefully
+:q! = quit forcefully
+:wq! = save & quit forcefully
+-------------------------------------------------------------------
+
+file permissions
+
+FILE TYPES: 
+- : regular file
+d : directory
+c : character file
+b : blocked file
+| : pipepline 
+
+PERMISSIONS
+
+r	:	read 	:	4
+w	:	write	:	2
+x	:	execute	1
+-	:	ntg	:	0
+
+
+
+user : rw- = 6
+
+
+group : r-- = 4
+
+
+others : r-- = 4
+
+644
+
+rwx  r-x  rw- = 756
+
+
+1 = ACL (Access Control List)
+
+
+ root = user,  root  = group 
+
+
+383 = no of characters (including spaces)
+
+ May 23 14:03 = file creation details 
+
+ aws = file name 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
